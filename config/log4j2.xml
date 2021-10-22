@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" pattern="%-5p %d [%t] %c: %m%n"/>
+        </Console>
+
+        <!-- Server Log Appender -->
+        <RollingFile name="serverLogAppender"
+                     fileName="/home/rathish/DEV/microservices/xcart-webapi-service/logs/xcart-webapi-service-server.log"
+                     filePattern="/home/rathish/DEV/microservices/xcart-webapi-service/logs/xcart-webapi-service-server-%d{yyyy-MM-dd}.log">
+            <PatternLayout charset="UTF-8">
+                <pattern>%-5p %d [%t] %c: %m%n</pattern>
+            </PatternLayout>
+            <TimeBasedTriggeringPolicy/>
+        </RollingFile>
+
+        <!-- DDS Cache Log Appender  -->
+        <RollingFile name="xcartCloudConfigServerAppender"
+                     fileName="/home/rathish/DEV/microservices/xcart-webapi-service/logs/xcart-webapi-service.log"
+                     filePattern="/home/rathish/DEV/microservices/xcart-webapi-service/logs/xcart-webapi-service-%d{yyyy-MM-dd}.log">
+            <PatternLayout charset="UTF-8">
+                <pattern>%-5p %d [%t] %c: %m%n</pattern>
+            </PatternLayout>
+            <TimeBasedTriggeringPolicy/>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+
+        <!-- CXF is used heavily by Mule for web services -->
+        <AsyncLogger name="org.apache.cxf" level="WARN"/>
+
+        <!-- Apache Commons tend to make a lot of noise which can clutter the log-->
+        <AsyncLogger name="org.apache" level="WARN"/>
+
+        <!-- Reduce startup noise -->
+        <AsyncLogger name="org.springframework.beans.factory" level="WARN"/>
+
+        <AsyncRoot level="INFO">
+            <AppenderRef ref="serverLogAppender"/>
+        </AsyncRoot>
+
+        <AsyncLogger name="com.coolminds.xcart.web.api" level="INFO">
+            <AppenderRef ref="xcartCloudConfigServerAppender"/>
+        </AsyncLogger>
+
+
+        <AsyncLogger name="com.coolminds.xcart.web.api" level="DEBUG">
+            <AppenderRef ref="xcartCloudConfigServerAppender"/>
+        </AsyncLogger>
+
+        <AsyncLogger name="org.hibernate.SQL" level="INFO">
+            <AppenderRef ref="serverLogAppender"/>
+        </AsyncLogger>
+
+
+
+
+    </Loggers>
+
+</Configuration>
