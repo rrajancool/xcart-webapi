@@ -1,0 +1,12 @@
+[Unit]
+Description=A Spring Boot application
+After=syslog.target
+
+[Service]
+User=rathish
+Group=rathish
+WorkingDirectory=/home/rathish/DEV/microservices/xcart-webapi-service
+ExecStart=/usr/bin/java -Xmx256m  -Dserver.port=8081 -Dspring.profiles.active=dev,default -Dlogging.config=/home/rathish/DEV/microservices/xcart-webapi-service/config/log4j2.xml -DCONFIG_SERVER_PASS=config_password  -jar /home/rathish/DEV/microservices/xcart-webapi-service/xcart-webapi.jar SuccessExitStatus=143 
+
+[Install] 
+WantedBy=multi-user.target
