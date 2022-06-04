@@ -12,7 +12,7 @@ ARG JAR_FILE
 SUDO COPY ${JAR_FILE} app.jar
 
 #unpackage jar file
-SUDO RUN mkdir -p target/dependency && (cd target/dependency; jar -xf /app.jar)
+SUDO RUN mkdir -p target/dependency && (cd target/dependency; jar -xf app.jar)
 
 #stage 2
 #Same Java runtime
