@@ -9,10 +9,10 @@ LABEL maintainer="Rathish Rajan <rathish1.rajan@gmail.com>"
 ARG JAR_FILE
 
 # Add the application's jar to the container
-SUDO COPY ${JAR_FILE} app.jar
+COPY ${JAR_FILE} app.jar
 
 #unpackage jar file
-SUDO RUN mkdir -p target/dependency && (cd target/dependency; jar -xf app.jar)
+RUN sudo mkdir -p target/dependency && (cd target/dependency; jar -xf app.jar)
 
 #stage 2
 #Same Java runtime
