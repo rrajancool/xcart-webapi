@@ -24,10 +24,3 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean install
-    - name: Publish To Docker
-      uses: docker/build-push-action@v1     
-      with:       
-        username: ${{ secrets.DOCKER_HUB_USERNAME }} 
-        password:  ${{ secrets.DOCKER_HUB_PASSWORD }}
-        repository: dockerHubUser/dockerHubRepository       
-        tags: ${{github.run_number}}    
