@@ -25,6 +25,20 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean install
+    - name: Generate Docker metadata
+      id: meta
+      uses: docker/metadata-action@v3
+      with:
+          images: |
+            docker.io/${{ github.repository }}
+            ghcr.io/${{ github.repository }}
+            quay.io/${{ github.repository }}
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+          flavor: |
+            latest=true  
     - name: Publish to Docker Hub
       uses: docker/build-push-action@v1     
       with:       
