@@ -117,7 +117,7 @@
 				</configuration>
 			</plugin>
 			<!-- This plugin is used to create a docker image and publish the image to docker hub-->
-			<plugin>
+			<!--<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
 				<version>1.4.13</version>
@@ -134,11 +134,11 @@
 						<phase>install</phase>
 						<goals>
 							<goal>build</goal>
-							<!--<goal>push</goal>-->
+							<goal>push</goal>
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 
