@@ -25,7 +25,7 @@ FROM openjdk:11-slim
 VOLUME /tmp
 
 #Copy unpackaged application to new container
-ARG DEPENDENCY=/target/dependency
+ARG DEPENDENCY=target/dependency
 COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
