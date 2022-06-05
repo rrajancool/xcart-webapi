@@ -11,8 +11,8 @@ ARG JAR_FILE
 WORKDIR /applications
 # Add the application's jar to the container
 
-RUN echo ${JAR_FILE}
-COPY ${JAR_FILE} /applications/app.jar
+#RUN echo ${JAR_FILE}
+COPY target/*.jar /applications/app.jar
 
 #unpackage jar file
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf /applications/app.jar)
