@@ -10,6 +10,8 @@ ARG JAR_FILE
 
 WORKDIR /applications
 # Add the application's jar to the container
+
+RUN echo ${JAR_FILE}
 COPY ${JAR_FILE} /applications/app.jar
 
 #unpackage jar file
